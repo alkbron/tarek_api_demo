@@ -1,0 +1,22 @@
+{
+    "name": "tarek-api-demo",
+    "version": "1.0.0",
+    "description": "API CRUD simple avec Bun, Elysia, et Drizzle ORM",
+    "type": "module",
+    "scripts": {
+        "dev": "bun run --watch src/index.ts",
+        "start": "bun run src/index.ts",
+        "db:push": "drizzle-kit push",
+        "db:studio": "drizzle-kit studio",
+        "db:seed": "bun run src/db/seed.ts"
+    },
+    "dependencies": {
+        "elysia": "^1.1.23",
+        "@elysiajs/swagger": "^1.1.5",
+        "drizzle-orm": "^0.33.0"
+    },
+    "devDependencies": {
+        "drizzle-kit": "0.22.0",
+        "better-sqlite3": "^11.5.0"
+    }
+}
