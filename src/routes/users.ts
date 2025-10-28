@@ -11,7 +11,6 @@ export const usersRoutes = new Elysia({ prefix: "/users" })
       const allUsers = await db.query.users.findMany({
         with: {
           animals: true,
-          country: true,
         },
       });
       return allUsers;
@@ -34,7 +33,6 @@ export const usersRoutes = new Elysia({ prefix: "/users" })
         where: eq(users.id, id),
         with: {
           animals: true,
-          country: true,
         },
       });
 
@@ -70,7 +68,6 @@ export const usersRoutes = new Elysia({ prefix: "/users" })
         prenom: t.String({ minLength: 1 }),
         mail: t.String({ format: "email" }),
         age: t.Integer({ minimum: 0 }),
-        countryId: t.Integer({ minimum: 1 }),
       }),
       detail: {
         tags: ["Users"],
@@ -109,7 +106,6 @@ export const usersRoutes = new Elysia({ prefix: "/users" })
         prenom: t.Optional(t.String({ minLength: 1 })),
         mail: t.Optional(t.String({ format: "email" })),
         age: t.Optional(t.Integer({ minimum: 0 })),
-        countryId: t.Optional(t.Integer({ minimum: 1 })),
       }),
       detail: {
         tags: ["Users"],

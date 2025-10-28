@@ -2,11 +2,6 @@ import { Elysia } from "elysia";
 import { swagger } from "@elysiajs/swagger";
 import { usersRoutes } from "./routes/users";
 import { animalsRoutes } from "./routes/animals";
-import { countriesRoutes } from "./routes/countries";
-import { seedCountries } from "./db/seed";
-
-// Seed les pays au démarrage
-await seedCountries();
 
 const app = new Elysia()
   .use(
@@ -27,10 +22,6 @@ const app = new Elysia()
             name: "Animals",
             description: "Opérations CRUD sur les animaux de compagnie",
           },
-          {
-            name: "Countries",
-            description: "Opérations CRUD sur les pays",
-          },
         ],
       },
     })
@@ -41,12 +32,10 @@ const app = new Elysia()
       swagger: "/swagger",
       users: "/users",
       animals: "/animals",
-      countries: "/countries",
     },
   }))
   .use(usersRoutes)
   .use(animalsRoutes)
-  .use(countriesRoutes)
   .listen(3000);
 
 console.log(

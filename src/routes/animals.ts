@@ -11,7 +11,6 @@ export const animalsRoutes = new Elysia({ prefix: "/animals" })
       const allAnimals = await db.query.animals.findMany({
         with: {
           user: true,
-          country: true,
         },
       });
       return allAnimals;
@@ -34,7 +33,6 @@ export const animalsRoutes = new Elysia({ prefix: "/animals" })
         where: eq(animals.id, id),
         with: {
           user: true,
-          country: true,
         },
       });
 
@@ -70,11 +68,13 @@ export const animalsRoutes = new Elysia({ prefix: "/animals" })
           t.Literal("chien"),
           t.Literal("chat"),
           t.Literal("tigre"),
+          t.Literal("chimpanzé"),
+          t.Literal("aigle"),
+          t.Literal("ornithorynque"),
         ]),
         age: t.Integer({ minimum: 0 }),
         couleur: t.String({ minLength: 1 }),
         userId: t.Integer({ minimum: 1 }),
-        countryId: t.Optional(t.Integer({ minimum: 1 })),
       }),
       detail: {
         tags: ["Animals"],
@@ -112,12 +112,18 @@ export const animalsRoutes = new Elysia({ prefix: "/animals" })
       body: t.Object({
         nom: t.Optional(t.String({ minLength: 1 })),
         type: t.Optional(
-          t.Union([t.Literal("chien"), t.Literal("chat"), t.Literal("tigre")])
+          t.Union([
+            t.Literal("chien"),
+            t.Literal("chat"),
+            t.Literal("tigre"),
+            t.Literal("chimpanzé"),
+            t.Literal("aigle"),
+            t.Literal("ornithorynque"),
+          ])
         ),
         age: t.Optional(t.Integer({ minimum: 0 })),
         couleur: t.Optional(t.String({ minLength: 1 })),
         userId: t.Optional(t.Integer({ minimum: 1 })),
-        countryId: t.Optional(t.Integer({ minimum: 1 })),
       }),
       detail: {
         tags: ["Animals"],
